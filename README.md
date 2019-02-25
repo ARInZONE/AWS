@@ -15,6 +15,10 @@ You may also install a specific version:
 
 $ pip install boto3==1.0.0
 
+install pandas:
+
+$ pip install pandas
+
 create the credential file yourself. By default, its location is at ~/.aws/credentials:
 
 [default]
