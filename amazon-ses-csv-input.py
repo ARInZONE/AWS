@@ -3,14 +3,16 @@ from botocore.exceptions import ClientError
 import csv
 import pandas
 import os
-dirName ='/home/arinzone/.aws'
+
+# create the directory for aws credentials
+dirName =os.environ['HOME']+'/.aws'
 # open the sender csv file for sender email ids with respective key and id 
 send = pandas.read_csv('em_sender_credentials_aws.csv',names=['sender_email_ids','aws_access_id','aws_key_id','email_accounts_limit'])
 count = int(send['email_accounts_limit'][1])
 # writes the key and id to /.aws/credentials file
 if not os.path.exists(dirName):
     os.makedirs(dirName)
-with open("/home/arinzone/.aws/credentials", "w") as key:
+with open(dirName+"/credentials", "w") as key:
     key.write('[default]\naws_access_key_id = '+send['aws_access_id'][1]+'\naws_secret_access_key = '+send['aws_key_id'][1])
     key.close()
 # open the receiver's csv file for email ids and names
